@@ -15,7 +15,7 @@ echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> rootfs/etc/apk/repo
 
 echo "apk update
 apk upgrade
-apk add busybox busybox-extras htop cfdisk parted util-linux nano shellcheck v86d links dhcpcd gpm iwd kexec-tools neofetch || exit 1
+apk add busybox busybox-extras htop cfdisk parted util-linux nano shellcheck links dhcpcd gpm iwd kexec-tools neofetch || exit 1
 apk del openrc busybox-initscripts || true
 ln -s /bin/busybox /sbin/init
 ln -s /bin/busybox /init
