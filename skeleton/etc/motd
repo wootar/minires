@@ -1,4 +1,3 @@
 Welcome to MiniRES!
 MiniRES is based off alpine linux and is meant for recovery usage.
-It's commonly included in the GrubRescue ISO, But can be used for anything!
 It has htop, parted, cfdisk, fdisk, all of busybox tools and links (a minimal web browser) along with kexec!
