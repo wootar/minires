@@ -39,4 +39,4 @@ DATE=$(date +%y.%m.%d)
 SED="s/REPLACEME/${DATE}/g'"
 cat skeleton/etc/os-release | sed "s/REPLACEME/${DATE}/g" > rootfs/etc/os-release
 rm rootfs/bootstrap.sh
-cp -rv kernel/kernel/modules/lib/* rootfs/lib && cd rootfs; find . -print0 | cpio --null --verbose --create --format=newc | gzip --best > ../out.cpio.gz; cd ..
+cp -rv kernel/src/modules/lib/* rootfs/lib && cd rootfs; find . -print0 | cpio --null --verbose --create --format=newc | gzip --best > ../out.cpio.gz; cd ..

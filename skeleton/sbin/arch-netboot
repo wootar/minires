@@ -10,6 +10,6 @@ wget -O kernel $LINUX
 echo "[-] Obtaining initrd"
 wget -O initrd.gz $INITRD
 echo "[-] Loading the kernel and Image to ram"
-kexec -d -l --append="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch" --initrd=initrd.gz kernel
+kexec -d -l --append="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch ip=dhcp" --initrd=initrd.gz kernel
 echo "[-] Off we go!"
 kexec -d -e

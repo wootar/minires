@@ -5,3 +5,4 @@
 /kernel/bzImage
 /kernel/kernel.tar.gz
 /out.cpio.gz
+/rootfs.tar.gz
