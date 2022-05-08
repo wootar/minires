@@ -1,0 +1,15 @@
+#!/bin/sh
+# Debian Netboot: Netboots Debian Installer with kexec
+
+LINUX="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux"
+INITRD="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz"
+
+echo "[-] Starting debian installer, please wait."
+echo "[-] Obtaining kernel"
+wget -O kernel $LINUX
+echo "[-] Obtaining initrd"
+wget -O initrd.gz $INITRD
+echo "[-] Loading the kernel and Image to ram"
+kexec -d -l --append="theme=dark --- quiet" --initrd=initrd.gz kernel
+echo "[-] Off we go!"
+kexec -d -e

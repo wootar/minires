@@ -1,0 +1,5 @@
+NAME="MiniRES"
+PRETTY_NAME="MiniRES"
+ID=minires
+ID_LIKE=alpine
+VERSION_ID=REPLACEME
