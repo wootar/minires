@@ -20,7 +20,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: sh build_all.sh
+        run: bash build_all.sh
         
       - name: upload kernel
   
