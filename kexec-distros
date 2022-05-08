@@ -1,0 +1,12 @@
+export LIST="arch debian alpine"
+export arch_LINUX="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/vmlinuz-linux"
+export arch_INITRD="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/initramfs-linux.img"
+export arch_CMDLINES="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch ip=dhcp"
+
+export debian_LINUX="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux"
+export debian_INITRD="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz"
+export debian_CMDLINES="theme=dark --- quiet"
+
+export alpine_LINUX="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/vmlinuz-lts"
+export alpine_INITRD="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/initramfs-lts"
+export alpine_CMDLINES="net.ifnames=0 ip=dhcp modloop=https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/modloop-lts modules=loop,squashfs alpine_repo=https://dl-cdn.alpinelinux.org/alpine/edge/main"

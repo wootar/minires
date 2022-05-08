@@ -1,8 +1,0 @@
-#!/bin/sh
-echo "Goodbye!"
-killall gpm || true
-killall udhcpc || true
-killall iwd || true
-#swapoff /dev/zram0
-#echo 1 > /sys/block/zram0/reset
-#modprobe -r zram

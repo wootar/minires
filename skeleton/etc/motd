@@ -1,3 +1,0 @@
-Welcome to MiniRES!
-MiniRES is based off alpine linux and is meant for recovery usage.
-It has htop, parted, cfdisk, fdisk, all of busybox tools and links (a minimal web browser) along with kexec!
