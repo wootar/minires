@@ -1,6 +1,6 @@
 
 echo "MiniRes Build Image"
-wget -O rootfs.tar.gz https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/alpine-minirootfs-20220328-x86_64.tar.gz
+wget -O rootfs.tar.gz https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/alpine-minirootfs-20220328-x86_64.tar.gz || exit 1
 
 mkdir rootfs
 cd rootfs
@@ -31,7 +31,7 @@ rm -rf /var/lib/apk
 rm /bootstrap.sh
 " > rootfs/bootstrap.sh
 cd rootfs
-chroot . /bin/sh /bootstrap.sh
+chroot . /bin/sh /bootstrap.sh || exit 1
 cd ..
 
 cp -rv skeleton/* rootfs/
@@ -39,4 +39,4 @@ DATE=$(date +%y.%m.%d)
 SED="s/REPLACEME/${DATE}/g'"
 cat skeleton/etc/os-release | sed "s/REPLACEME/${DATE}/g" > rootfs/etc/os-release
 rm rootfs/bootstrap.sh
-cp -rv kernel/src/modules/lib/* rootfs/lib && cd rootfs; find . -print0 | cpio --null --verbose --create --format=newc | gzip --best > ../out.cpio.gz; cd ..
+cp -rv kernel/src/modules/lib/* rootfs/lib && cd rootfs; find . -print0 | cpio --null --verbose --create --format=newc | gzip --best > ../out.cpio.gz; cd .. || exit 1
