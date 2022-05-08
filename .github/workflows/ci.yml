@@ -18,9 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install deps
+        run: sudo apt upde; sudo apt install -y libelf-dev bison bc flex gcc
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: bash build_all.sh
+      - name: Build
+        run: sudo bash build_all.sh
         
       - name: upload kernel
   
