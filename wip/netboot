@@ -1,0 +1,10 @@
+#!/bin/sh
+wget -O /tmp/repo https://raw.githubusercontent.com/wootar/minires/repo/kexec-distros
+source /tmp/repo
+
+select os in ${LIST}
+do
+
+[ ! -z "${$os_LINUX}" ] || exit 1
+
+done
