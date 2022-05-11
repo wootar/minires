@@ -23,6 +23,17 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build
         run: sudo bash build_all.sh
+
+      - name: Push updated config file
+        run: cp kernel/src/out/.config kernel/kconfig
+      
+      - name: Update resources
+        uses: test-room-7/action-update-file@v1
+          with:
+            file-path: |
+              kernel/kconfig
+          commit-msg: Update resources
+          github-token: ${{ secrets.TOKEN }}
         
       - name: upload kernel
   
