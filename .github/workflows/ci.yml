@@ -27,12 +27,12 @@ jobs:
       - name: Push updated config file
         run: cp kernel/src/out/.config kernel/kconfig
       
-      - name: Update resources
+      - name: Update kernel config
         uses: test-room-7/action-update-file@v1
-          with:
-            file-path: |
-              kernel/kconfig
-          commit-msg: Update resources
+        with:
+          file-path: |
+            kernel/kconfig
+          commit-msg: Update kernel config
           github-token: ${{ secrets.TOKEN }}
         
       - name: upload kernel
