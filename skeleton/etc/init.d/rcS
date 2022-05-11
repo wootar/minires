@@ -14,9 +14,9 @@ if [ -e /dev/fb0 ] && ! [ -e /sys/module/fbcon ]; then
                 modprobe -b -q fbcon
 fi
 /usr/bin/dbus-daemon --system &> /tmp/dbus.log &
-/usr/libexec/iwd &> /tmp/iwd.log &
 hostname "minires-${RANDOM}"
 ip link set eth0 up && dhcpcd eth0 || echo "No ethernets?"
 gpm -m /dev/psaux -t ps2 &
 clear
 cat /etc/motd
+/usr/libexec/iwd &> /tmp/iwd.log &
