@@ -1,12 +1,38 @@
-export LIST="arch debian alpine"
-export arch_LINUX="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/vmlinuz-linux"
-export arch_INITRD="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/initramfs-linux.img"
-export arch_CMDLINES="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch ip=dhcp"
+arch_LINUX="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/vmlinuz-linux"
+arch_INITRD="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/initramfs-linux.img"
+arch_CMDLINES="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch ip=dhcp"
+debian_LINUX="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux"
+debian_INITRD="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz"
+debian_CMDLINES="theme=dark --- quiet"
+alpine_LINUX="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/vmlinuz-lts"
+alpine_INITRD="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/initramfs-lts"
+alpine_CMDLINES="net.ifnames=0 ip=dhcp modloop=https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/modloop-lts modules=loop,squashfs alpine_repo=https://dl-cdn.alpinelinux.org/alpine/edge/main"
+echo "Select distro to dualboot"
 
-export debian_LINUX="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux"
-export debian_INITRD="https://deb.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz"
-export debian_CMDLINES="theme=dark --- quiet"
+select distro in arch alpine debian
+do
 
-export alpine_LINUX="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/vmlinuz-lts"
-export alpine_INITRD="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/initramfs-lts"
-export alpine_CMDLINES="net.ifnames=0 ip=dhcp modloop=https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/modloop-lts modules=loop,squashfs alpine_repo=https://dl-cdn.alpinelinux.org/alpine/edge/main"
+case $distro in
+"alpine")
+wget -O kernel $alpine_LINUX
+wget -O initrd.gz $alpine_INITRD
+kexec -l --append="${alpine_CMDLINES}" --initrd=initrd.gz kernel
+kexec -e
+;;
+"arch")
+wget -O kernel $arch_LINUX
+wget -O initrd.gz $arch_INITRD
+kexec -l --append="${arch_CMDLINES}" --initrd=initrd.gz kernel
+kexec -e
+;;
+"debian")
+wget -O kernel $debian_LINUX
+wget -O initrd.gz $debian_INITRD
+kexec -l --append="${debian_CMDLINES}" --initrd=initrd.gz kernel
+kexec -e
+;;
+*)
+echo "Invaild choice."
+;;
+esac
+done
