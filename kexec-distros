@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 arch_LINUX="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/vmlinuz-linux"
 arch_INITRD="http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/initramfs-linux.img"
 arch_CMDLINES="net.ifnames=0 verify=y archiso_http_srv=http://mirror.rackspace.com/archlinux/iso/latest/ archisobasedir=arch ip=dhcp"
