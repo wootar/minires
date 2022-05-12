@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Starting kexec"
+curl -L https://raw.githubusercontent.com/wootar/minires/repo/kexec-distros > /tmp/kexec
+bash /tmp/kexec
