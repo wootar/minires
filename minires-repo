@@ -1,0 +1,23 @@
+#!/bin/busybox sh
+
+update() {
+	wget -O /tmp/packages https://raw.githubusercontent.com/wootar/minires/repo/package-list
+}
+
+install() {
+     [ -z "$1" ] && echo "Usage: minires-repo install <package>"; exit 1
+    echo "a" 
+    grep "$1" /tmp/packages > /dev/null 
+    echo "b" 
+    stat=$? 
+    echo "c" 
+    [ $stat -eq 1 ] && echo "Package $1 doesn't exist."; exit 1 
+    echo "d"
+}
+
+
+#
+[ "$1" = "update" ] && update
+[ "$1" = "install" ] && echo b; install "$2"
+#
+echo "Usage: minires-repo <update | install>"; exit 1
