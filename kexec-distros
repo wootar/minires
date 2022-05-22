@@ -8,25 +8,25 @@ debian_CMDLINES="theme=dark --- quiet"
 alpine_LINUX="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/vmlinuz-lts"
 alpine_INITRD="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/initramfs-lts"
 alpine_CMDLINES="net.ifnames=0 ip=dhcp modloop=https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/modloop-lts modules=loop,squashfs alpine_repo=https://dl-cdn.alpinelinux.org/alpine/edge/main"
-echo "Select distro to dualboot"
+echo "Select your distro installer/liveboot"
 
-select distro in arch alpine debian
+select distro in arch_live alpine_edge_live debian_installer
 do
 
 case $distro in
-"alpine")
+"alpine_edge_live")
 wget -O kernel $alpine_LINUX
 wget -O initrd.gz $alpine_INITRD
 kexec -l --append="${alpine_CMDLINES}" --initrd=initrd.gz kernel
 kexec -e
 ;;
-"arch")
+"arch_live")
 wget -O kernel $arch_LINUX
 wget -O initrd.gz $arch_INITRD
 kexec -l --append="${arch_CMDLINES}" --initrd=initrd.gz kernel
 kexec -e
 ;;
-"debian")
+"debian_installer")
 wget -O kernel $debian_LINUX
 wget -O initrd.gz $debian_INITRD
 kexec -l --append="${debian_CMDLINES}" --initrd=initrd.gz kernel
