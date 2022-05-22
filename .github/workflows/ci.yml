@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    if: ${{ github.actor != 'github-actions' 'github-actions[bot]' }}
+    if: ${{ github.actor != 'github-actions' }}
 
     runs-on: ubuntu-latest
 
