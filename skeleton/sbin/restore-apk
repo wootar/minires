@@ -1,5 +1,5 @@
 #!/bin/sh
-URL="https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/apk-tools-static-2.12.9-r2.apk"
+URL="https://raw.githubusercontent.com/wootar/minires/repo/apk-static-2.12.9-r3-amd64.apk"
 echo "[-] Preparing"
 mkdir /tmp/wagon
 cd /tmp/wagon

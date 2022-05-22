@@ -1,4 +1,4 @@
 #!/bin/sh
-echo "Starting kexec"
+echo "Starting kexec-distro"
 wget -O - https://raw.githubusercontent.com/wootar/minires/repo/kexec-distros > /tmp/kexec
 bash /tmp/kexec

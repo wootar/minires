@@ -16,7 +16,7 @@ if [ -e /dev/fb0 ] && ! [ -e /sys/module/fbcon ]; then
 fi
 /usr/bin/dbus-daemon --system &> /tmp/dbus.log &
 hostname "minires-${RANDOM}"
-ip link set eth0 up && dhcpcd eth0 || echo "No ethernets?"
+ip link set eth0 up && dhcpcd -t 4 eth0 || echo "No ethernets?"
 gpm -m /dev/psaux -t ps2 &
 clear
 cat /etc/motd

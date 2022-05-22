@@ -1,3 +1,15 @@
 Welcome to MiniRES!
 MiniRES is based off alpine linux and is meant for recovery usage.
 It has htop, parted, cfdisk, fdisk, all of busybox tools and links (a minimal web browser) along with kexec!
+
+To connect to a WiFi hotspot/access point:
+# iwd
+[iwd]: station list
+[iwd]: station *wifi card* scan
+[iwd]: station *wifi card* show-networks
+[iwd]: connect *wifi card* *ap/hotspot name*
+[iwd]: quit
+# dhcpcd *wifi card's interface*
+
+If you did plug in a ethernet cable in the console you may run this command:
+# ip link set eth0 up; dhcpcd eth0
