@@ -1,4 +1,4 @@
-wget -O kernel.tar.gz https://git.kernel.org/torvalds/t/linux-5.18-rc7.tar.gz
+wget -O kernel.tar.gz https://git.kernel.org/torvalds/t/linux-5.19-rc1.tar.gz
 mkdir modules
 tar xvf kernel.tar.gz
 mv linux-* src

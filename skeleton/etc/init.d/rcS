@@ -1,12 +1,10 @@
 #!/bin/sh
-echo "Starting"
+echo "Starting MiniRES on $(date)"
+echo "Mounting /sys, /dev, /proc"
 mount -t sysfs sys /sys
 mount -t proc proc /proc
 mount -t devtmpfs dev /dev
-#modprobe zram
-#busybox free | busybox grep Mem | busybox awk {'print $2*2'} > /sys/block/zram0/disksize
-#busybox mkswap /dev/zram0
-#busybox swapon /dev/zram0 -p 10
+echo "Modprobing devices"
 depmod
 find /sys -name modalias -type f -print0 | xargs -0 sort -u | xargs modprobe -b -a 2> /dev/null
 find /sys -name modalias -type f -print0 | xargs -0 sort -u | xargs modprobe -b -a 2> /dev/null
@@ -14,10 +12,15 @@ modprobe mousedev || true
 if [ -e /dev/fb0 ] && ! [ -e /sys/module/fbcon ]; then
                 modprobe -b -q fbcon
 fi
+echo "Starting System D-Bus Daemon"
 /usr/bin/dbus-daemon --system &> /tmp/dbus.log &
+echo "Changing hostname"
 hostname "minires-${RANDOM}"
-ip link set eth0 up && dhcpcd -t 4 eth0 || echo "No ethernets?"
-gpm -m /dev/psaux -t ps2 &
 clear
-cat /etc/motd
+echo "Trying to connect to internet via ethernet"
+ip link set eth0 up && dhcpcd -t 4 eth0 || echo -e "Failed to obtain a IP Address\n Reasons:\n1. You aren't connected to the internet via ethernet\n2. Faulty ethernet card.\n3. You are on a laptop that doesn't have a ethernet port\n4. You are going to use Wi-Fi to connect to the internet."
+echo "Starting gpm (Mouse support)"
+gpm -m /dev/psaux -t ps2 &> /tmp/gpm.log &
+echo "Starting iwd (Wi-Fi support)"
 /usr/libexec/iwd &> /tmp/iwd.log &
+cat /etc/motd

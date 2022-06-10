@@ -13,3 +13,5 @@ To connect to a WiFi hotspot/access point:
 
 If you did plug in a ethernet cable in the console you may run this command:
 # ip link set eth0 up; dhcpcd eth0
+
+Note: If your internet isn't working, Please change the dns server (# echo "nameserver 1.1.1.1" > /etc/resolv.conf)

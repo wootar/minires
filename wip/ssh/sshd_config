@@ -1,0 +1,17 @@
+#Minimal ssh config for MiniRES
+Port 2042
+PermitRootLogin yes
+MaxAuthTries 2
+MaxSessions 2
+
+KbdInteractiveAuthentication no
+
+
+AllowTcpForwarding yes
+GatewayPorts yes
+X11Forwarding yes
+X11DisplayOffset 10
+PermitTTY yes
+PrintMotd no 
+TCPKeepAlive yes
+
