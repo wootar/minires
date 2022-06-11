@@ -1,10 +1,12 @@
 #!/bin/sh
 echo "Building MiniRES Image"
-wget -O rootfs.tar.gz https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/alpine-minirootfs-20220328-x86_64.tar.gz || exit 1
+ls kernel/src &> /dev/null || echo "Kernel not downloaded, trying to find modules folder"; ls kernel/modules &> /dev/null || echo "Trying to find bzImage"; ls kerne/bzImage &> /dev/null || echo "Failure, please build the kernel."; exit 1
+echo "Downloading rootfs"
+wget -O rootfs.tar.gz https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/alpine-minirootfs-20220328-x86_64.tar.gz &> /dev/null || exit 1
 
 mkdir rootfs
 cd rootfs
-tar xvf ../rootfs.tar.gz
+tar xvf ../rootfs.tar.gz &> /dev/null
 cd ..
 
 echo "Configuring rootfs"
@@ -47,6 +49,9 @@ rm rootfs/bootstrap.sh
 cd rootfs
 cp -rv ../kernel/modules/lib/* lib
 cp -rv ../kernel/modules/lib/* lib
+echo "Now generating the minires initrd"
 find . -print0 | cpio --null --verbose \
  --create --format=newc | gzip \
  --best > ../out.cpio.gz; cd .. || exit 1
+echo "Done!"
+echo "You may test it by running qemu-system-x86_64 -kernel kernel/bzImage -m 512M -accel tcg"

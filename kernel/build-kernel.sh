@@ -1,11 +1,10 @@
-wget -O kernel.tar.gz https://git.kernel.org/torvalds/t/linux-5.19-rc1.tar.gz
+wget -O - https://git.kernel.org/torvalds/t/linux-5.19-rc1.tar.gz | gunzip | tar xf || exit 1
 mkdir modules
-tar xvf kernel.tar.gz
 mv linux-* src
 cd src
 mkdir out
 cp ../kconfig out/.config
-yes " " | make oldconfig O=out 
+make olddefconfig O=out 
 make -j$(nproc) O=out || exit 1
 make modules_install O=out INSTALL_MOD_PATH=../../modules
 cp out/arch/x86/boot/bzImage ../bzImage

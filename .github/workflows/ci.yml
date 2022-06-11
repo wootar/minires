@@ -11,11 +11,23 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
 jobs:
   build:
     if: ${{ github.actor != 'github-actions' }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +47,7 @@ jobs:
           file-path: |
             kernel/kconfig
           commit-msg: Update kernel config
-          github-token: ${{ secrets.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: upload kernel
   
