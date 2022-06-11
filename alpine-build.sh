@@ -37,7 +37,7 @@ rm /bootstrap.sh
 " > rootfs/bootstrap.sh
 cd rootfs
 echo "Now for the main part, generating the image!"
-chroot . /bin/sh /bootstrap.sh || exit 1
+chroot . /bin/ash /bootstrap.sh || exit 1
 cd ..
 
 cp -rv skeleton/* rootfs/
