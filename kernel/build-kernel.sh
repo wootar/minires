@@ -1,4 +1,4 @@
-wget -O - https://git.kernel.org/torvalds/t/linux-5.19-rc1.tar.gz | gunzip | tar xf || exit 1
+wget -O - https://git.kernel.org/torvalds/t/linux-5.19-rc1.tar.gz | gunzip | tar x || exit 1
 mkdir modules
 mv linux-* src
 cd src
