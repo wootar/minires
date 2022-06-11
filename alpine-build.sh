@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Building MiniRES Image"
-ls kernel/src &> /dev/null || echo "Kernel not downloaded, trying to find modules folder"; ls kernel/modules &> /dev/null || echo "Trying to find bzImage"; ls kerne/bzImage &> /dev/null || echo "Failure, please build the kernel."; exit 1
+ls kernel/bzImage || echo "Failure, please build the kernel."; exit 1
 echo "Downloading rootfs"
 wget -O rootfs.tar.gz https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/alpine-minirootfs-20220328-x86_64.tar.gz &> /dev/null || exit 1
 

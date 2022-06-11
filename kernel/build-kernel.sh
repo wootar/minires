@@ -4,7 +4,7 @@ mv linux-* src
 cd src
 mkdir out
 cp ../kconfig out/.config
-make olddefconfig O=out 
+make olddefconfig O=out &> /dev/null
 make -j$(nproc) O=out || exit 1
-make modules_install O=out INSTALL_MOD_PATH=../../modules
+make modules_install O=out INSTALL_MOD_PATH=../../modules &> /dev/null
 cp out/arch/x86/boot/bzImage ../bzImage
