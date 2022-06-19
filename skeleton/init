@@ -1,0 +1,10 @@
+#!/bin/busybox ash
+echo "Switching from initrd to RAM"
+mkdir /ramfs
+echo "Copying filesystem to RAM"
+cp -r -p /rootfs /ramfs
+mount --move /dev /ramfs/dev || mount -t devtmpfs devtmpfs /ramfs/dev
+mount --move /sys /ramfs/sys || mount -t sysfs sys /ramfs/sys
+mount --move /proc /ramfs/proc || mount -t proc proc /ramfs/proc
+echo "Off the hook."
+exec /bin/busybox switch_root /ramfs /sbin/init

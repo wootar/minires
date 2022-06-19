@@ -1,8 +1,8 @@
 #!/bin/sh
 echo "Shutting down MiniRES on $(date)"
 echo "Disconnecting from the internet."
-ip link eth0 down || true
-ip link wlan0 down || true
+ip link set eth0 down || true
+ip link set wlan0 down || true
 echo "Stopping services"
 echo "Stopping service gpm (Mouse support)"
 killall gpm || echo "Failed."; true
